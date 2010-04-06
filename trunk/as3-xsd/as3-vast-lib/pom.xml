@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>as3-xsd-parent-pom</artifactId>
+        <groupId>com.sysbliss.xml</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../as3-xsd-parent-pom/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>as3-vast-lib</artifactId>
+    <version>${ci.version}</version>
+    <packaging>swc</packaging>
+
+    <name>AS3 VAST Framework</name>
+    <description>A VAST Marshalling library</description>
+
+    <properties>
+        <ci.version>1.0.0-SNAPSHOT</ci.version>
+    </properties>
+
+     <dependencies>
+        <dependency>
+            <groupId>com.sysbliss.xml</groupId>
+            <artifactId>as3-xsd-lib</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <type>swc</type>
+        </dependency>
+    </dependencies>
+
+</project>

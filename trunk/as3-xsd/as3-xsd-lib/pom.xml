@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>as3-xsd-parent-pom</artifactId>
+        <groupId>com.sysbliss.xml</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>as3-xsd-lib</artifactId>
+    <version>${ci.version}</version>
+    <packaging>swc</packaging>
+
+    <name>AS3 XSD Framework</name>
+    <description>A library providing basic xml schema support</description>
+
+    <properties>
+        <ci.version>1.0.0-SNAPSHOT</ci.version>
+    </properties>
+
+</project>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sysbliss.xml</groupId>
+    <artifactId>as3-xsd-parent-pom</artifactId>
+    <packaging>pom</packaging>
+    <version>${ci.version}</version>
+    <name>AS3 XSD Parent POM</name>
+
+    <organization>
+        <name>Systems Bliss Inc.</name>
+        <url>http://www.sysbliss.com/</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Jonathan Doklovic</name>
+            <organization>Systems Bliss Inc.</organization>
+        </developer>
+    </developers>
+
+    <properties>
+        <ci.version>1.0.0-SNAPSHOT</ci.version>
+        <flex.version>3.5.0.12683</flex.version>
+        <flexmojos.version>3.5.0</flexmojos.version>
+        <flash.version>10.0.0</flash.version>
+        <flash.player.classifier>10</flash.player.classifier>
+        <flexunit.version>4.0-beta-2</flexunit.version>
+        <!-- <flashPlayer.command>set the path to your flash player in your default profile</flashPlayer.command> -->
+    </properties>
+
+    <build>
+        <sourceDirectory>src/main/flex</sourceDirectory>
+        <testSourceDirectory>src/test/flex</testSourceDirectory>
+
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>${basedir}/src/test/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </testResource>
+        </testResources>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.flexmojos</groupId>
+                <artifactId>flexmojos-maven-plugin</artifactId>
+                <version>${flexmojos.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <configurationReport>true</configurationReport>
+                    <targetPlayer>${flash.version}</targetPlayer>
+                    <debug>${ci.debug}</debug>
+
+                    <compiledLocales>
+                        <locale>en_US</locale>
+                    </compiledLocales>
+
+                    <resourceBundlePath>${basedir}/src/main/locales/{locale}</resourceBundlePath>
+
+                </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>com.adobe.flex</groupId>
+                        <artifactId>compiler</artifactId>
+                        <version>${flex.version}</version>
+                        <type>pom</type>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.1</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.sysbliss.lib</groupId>
+                <artifactId>sysbliss-commons</artifactId>
+                <version>1.1.0</version>
+                <type>swc</type>
+            </dependency>
+
+            <dependency>
+                <groupId>com.adobe.flex.framework</groupId>
+                <artifactId>framework</artifactId>
+                <version>${flex.version}</version>
+                <type>swc</type>
+                <scope>external</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.adobe.flex.framework</groupId>
+                <artifactId>flex</artifactId>
+                <version>${flex.version}</version>
+                <type>swc</type>
+                <scope>external</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.adobe.flex.framework</groupId>
+                <artifactId>flex-framework</artifactId>
+                <version>${flex.version}</version>
+                <type>pom</type>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.adobe.flex.framework</groupId>
+                        <artifactId>playerglobal</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.adobe.flex.framework</groupId>
+                <artifactId>playerglobal</artifactId>
+                <version>${flex.version}</version>
+                <classifier>${flash.player.classifier}</classifier>
+                <type>swc</type>
+                <scope>external</scope>
+            </dependency>
+            <!--
+            <dependency>
+                <groupId>com.adobe.flex.framework</groupId>
+                <artifactId>sparkskins</artifactId>
+                <version>${flex.version}</version>
+                <type>swc</type>
+                <scope>theme</scope>
+            </dependency>
+            -->
+            <dependency>
+                <groupId>com.adobe.flex.framework</groupId>
+                <artifactId>rpc</artifactId>
+                <version>${flex.version}</version>
+                <type>swc</type>
+                <scope>external</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.adobe.flex.framework</groupId>
+                <artifactId>utilities</artifactId>
+                <version>${flex.version}</version>
+                <type>swc</type>
+                <scope>external</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.adobe.flexunit</groupId>
+                <artifactId>flexunit</artifactId>
+                <version>${flexunit.version}</version>
+                <type>swc</type>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.sysbliss.lib</groupId>
+            <artifactId>sysbliss-commons</artifactId>
+            <type>swc</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.flex.framework</groupId>
+            <artifactId>framework</artifactId>
+            <type>swc</type>
+            <scope>external</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.flex.framework</groupId>
+            <artifactId>flex</artifactId>
+            <type>swc</type>
+            <scope>external</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.flex.framework</groupId>
+            <artifactId>flex-framework</artifactId>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.flex.framework</groupId>
+            <artifactId>playerglobal</artifactId>
+            <classifier>${flash.player.classifier}</classifier>
+            <type>swc</type>
+            <scope>external</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.flex.framework</groupId>
+            <artifactId>rpc</artifactId>
+            <type>swc</type>
+            <scope>external</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.flex.framework</groupId>
+            <artifactId>utilities</artifactId>
+            <type>swc</type>
+            <scope>external</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.flexunit</groupId>
+            <artifactId>flexunit</artifactId>
+            <type>swc</type>
+            <scope>test</scope>
+        </dependency>
+   
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>flex-mojos-repository2</id>
+            <url>http://repository.sonatype.org/content/groups/flexgroup</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+
+        <repository>
+            <id>sysbliss-public</id>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <url>http://repo.sysbliss.com/content/groups/public</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>sysbliss.releases</id>
+            <url>http://repo.sysbliss.com/content/repositories/releases</url>
+            <layout>default</layout>
+        </repository>
+
+        <snapshotRepository>
+            <id>sysbliss.snapshots</id>
+            <url>http://repo.sysbliss.com/content/repositories/snapshots</url>
+            <layout>default</layout>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+</project>
